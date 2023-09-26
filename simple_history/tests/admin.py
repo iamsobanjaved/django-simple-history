@@ -17,15 +17,18 @@ from .models import (
 )
 
 
+@admin.register(Person)
 class PersonAdmin(SimpleHistoryAdmin):
     def has_change_permission(self, request, obj=None):
         return False
 
 
+@admin.register(Choice)
 class ChoiceAdmin(SimpleHistoryAdmin):
     history_list_display = ["votes"]
 
 
+@admin.register(FileModel)
 class FileModelAdmin(SimpleHistoryAdmin):
     def test_method(self, obj):
         return "test_method_value"
@@ -33,6 +36,7 @@ class FileModelAdmin(SimpleHistoryAdmin):
     history_list_display = ["title", "test_method"]
 
 
+@admin.register(Planet)
 class PlanetAdmin(SimpleHistoryAdmin):
     def test_method(self, obj):
         return "test_method_value"
@@ -41,13 +45,9 @@ class PlanetAdmin(SimpleHistoryAdmin):
 
 
 admin.site.register(Poll, SimpleHistoryAdmin)
-admin.site.register(Choice, ChoiceAdmin)
-admin.site.register(Person, PersonAdmin)
 admin.site.register(Book, SimpleHistoryAdmin)
 admin.site.register(Document, SimpleHistoryAdmin)
 admin.site.register(Paper, SimpleHistoryAdmin)
 admin.site.register(Employee, SimpleHistoryAdmin)
 admin.site.register(ConcreteExternal, SimpleHistoryAdmin)
 admin.site.register(ExternalModelWithCustomUserIdField, SimpleHistoryAdmin)
-admin.site.register(FileModel, FileModelAdmin)
-admin.site.register(Planet, PlanetAdmin)

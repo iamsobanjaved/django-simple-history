@@ -97,7 +97,7 @@ class BulkHistoryCreateTestCase(TestCase):
     def test_simple_bulk_history_create(self):
         created = Poll.history.bulk_history_create(self.data)
         self.assertEqual(len(created), 4)
-        self.assertQuerysetEqual(
+        self.assertQuerySetEqual(
             Poll.history.order_by("question"),
             ["Question 1", "Question 2", "Question 3", "Question 4"],
             attrgetter("question"),
@@ -220,7 +220,7 @@ class BulkHistoryUpdateTestCase(TestCase):
     def test_simple_bulk_history_create(self):
         created = Poll.history.bulk_history_create(self.data, update=True)
         self.assertEqual(len(created), 4)
-        self.assertQuerysetEqual(
+        self.assertQuerySetEqual(
             Poll.history.order_by("question"),
             ["Question 1", "Question 2", "Question 3", "Question 4"],
             attrgetter("question"),
